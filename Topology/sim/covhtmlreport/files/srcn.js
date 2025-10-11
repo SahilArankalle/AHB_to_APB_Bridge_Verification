@@ -1,2 +1,0 @@
-var g_data = ["","../test/test_pkg.sv","../apb_top/apb_agent_config.sv","../ahb_top/ahb_agent_config.sv","../tb/env_config.sv","../ahb_top/ahb_driver.sv","../ahb_top/ahb_monitor.sv","../ahb_top/ahb_sequencer.sv","../ahb_top/ahb_agent.sv","../ahb_top/ahb_agt_top.sv","../apb_top/apb_driver.sv","../apb_top/apb_monitor.sv","../apb_top/apb_sequencer.sv","../apb_top/apb_agent.sv","../apb_top/apb_agt_top.sv","../tb/env.sv","../test/test.sv","../tb/top.sv"];
-processSrcNamesData(g_data);
