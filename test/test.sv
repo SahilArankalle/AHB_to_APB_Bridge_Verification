@@ -97,9 +97,6 @@ class incr_seqs extends test;
 
     `uvm_component_utils(incr_seqs)
 
-int a=2;
-
-$display("%d",a);
 	v_seqs2 ahb_seqs2;
 
 	extern function new(string name = "incr_seqs", uvm_component parent);
@@ -115,7 +112,7 @@ task incr_seqs::run_phase(uvm_phase phase);
 	phase.raise_objection(this);
 	ahb_seqs2 = v_seqs2::type_id::create("ahb_seqs2");
 	ahb_seqs2.start(e.v_seqrh);
-	#100;
+	#150;
 	phase.drop_objection(this);
 endtask
 
@@ -140,7 +137,7 @@ task wrap_seqs::run_phase(uvm_phase phase);
 	phase.raise_objection(this);
 	ahb_seqs3 = v_seqs3::type_id::create("ahb_seqs3");
 	ahb_seqs3.start(e.v_seqrh);
-	#200;
+	#150;
 	phase.drop_objection(this);
 endtask
 

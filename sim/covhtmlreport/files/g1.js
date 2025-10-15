@@ -1,2 +1,2 @@
-var g_data = {"16":{"pr":"/test_pkg","ty":2,"dui":3,"dun":"work.test_pkg","cvgs":[{"h":["/test_pkg/scoreboard/cg1",1,1,17],"cov":[18,5,44.16],"opts":{"goal":"100","merge_instance":"auto(true)"}},{"h":["/test_pkg/scoreboard/cg2",1,1,23],"cov":[12,4,45.83],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
+var g_data = {"16":{"pr":"/test_pkg","ty":2,"dui":3,"dun":"work.test_pkg","cvgs":[{"h":["/test_pkg/scoreboard/cg1",1,1,17],"cov":[18,7,56.66],"opts":{"goal":"100","merge_instance":"auto(true)"}},{"h":["/test_pkg/scoreboard/cg2",1,1,23],"cov":[12,5,54.16],"opts":{"goal":"100","merge_instance":"auto(true)"}}]}};
 processCovergroupsData(g_data);

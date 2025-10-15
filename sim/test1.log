@@ -1,5 +1,5 @@
-# vsim -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit cov1;run -all; exit" -wlf wave_file1.wlf -l test1.log -sv_seed random work.top "+UVM_TESTNAME=single_seqs" 
-# Start time: 18:29:05 on Oct 11,2025
+# vsim -vopt -voptargs="+acc" -coverage -sva -c -do " log -r /* ;coverage save -onexit cov2;run -all; exit" -wlf wave_file2.wlf -l test1.log -sv_seed random work.top "+UVM_TESTNAME=incr_seqs" 
+# Start time: 20:45:24 on Oct 12,2025
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
 # ** Note: (vopt-143) Recognized 1 FSM in module "apb_controller(fast)".
@@ -34,9 +34,9 @@
 # Loading work.apb(fast)
 # Loading /home/cad/eda/Mentor_Graphics/Questasim/questasim/uvm-1.1d/linux_x86_64/uvm_dpi.so
 # ** Warning: (vsim-8634) Code was not compiled with coverage options.
-# Sv_Seed = 3737711871
+# Sv_Seed = 1025460419
 #  log -r /* 
-# coverage save -onexit cov1
+# coverage save -onexit cov2
 # run -all
 # ----------------------------------------------------------------
 # UVM-1.1d
@@ -60,13 +60,13 @@
 # 
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(+struct)
-# UVM_INFO @ 0: reporter [RNTST] Running test single_seqs...
+# UVM_INFO @ 0: reporter [RNTST] Running test incr_seqs...
 # UVM_INFO ../tb/env.sv(61) @ 0: uvm_test_top.env [env] APB monitor = {monh} 915 1 1074 @uvm_status_container@1 @uvm_report_handler@124 0 1 null @uvm_domain@2 { } @uvm_phase@3 null 0 0 @apb_agent@1 { {"monitor_port":@uvm_port_component__8@6} } { {@uvm_port_component__8@6:@uvm_port_component__8@6} } { } { } {uvm_test_top.env.apb_top.agnth.monh} @uvm_object_string_pool__1@55 0 {} 1 0 {uvm_component} {} {uvm_monitor} /top/in1 @apb_agent_config@1 @uvm_analysis_port__4@3 {apb_monitor}
 # UVM_INFO @ 0: reporter [UVMTOP] UVM testbench topology:
 # --------------------------------------------------------------------
 # Name                         Type                        Size  Value
 # --------------------------------------------------------------------
-# uvm_test_top                 single_seqs                 -     @479 
+# uvm_test_top                 incr_seqs                   -     @479 
 #   env                        env                         -     @495 
 #     ahb_top                  ahb_agt_top                 -     @507 
 #       agnth                  ahb_agent                   -     @743 
@@ -119,6 +119,27 @@
 # --------------------------------------------------------------------
 # 
 # inside DEFAULT state                  10
+# UVM_INFO ../ahb_top/ahb_seqs.sv(61) @ 30: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    30                                       
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002de                               
+#   Hwdata                       integral  32    'h63355db5                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h2                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    631                                      
+# ----------------------------------------------------------------------------------------
+# 
 # UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 50: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
 # ----------------------------------------------------------------------------------------
 # Name                           Type      Size  Value                                    
@@ -126,30 +147,74 @@
 # req                            ahb_xtn   -     @1098                                    
 #   begin_time                   time      64    30                                       
 #   depth                        int       32    'd2                                      
-#   parent sequence (name)       string    4     seq1                                     
-#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq1
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
 #   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
-#   Haddr                        integral  32    'h8400005a                               
-#   Hwdata                       integral  32    'h8e096153                               
+#   Haddr                        integral  32    'h840002de                               
+#   Hwdata                       integral  32    'h63355db5                               
 #   Hrdata                       integral  32    'h0                                      
 #   Hsize                        integral  3     'h0                                      
 #   Htrans                       integral  3     'h2                                      
 #   Hreadyout                    integral  1     'h0                                      
 #   Hreadyin                     integral  1     'h1                                      
 #   Hwrite                       integral  1     'h1                                      
-#   Hburst                       integral  3     'd0                                      
-#   Length                       integral  10    'd1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    631                                      
 # ----------------------------------------------------------------------------------------
+# UVM_INFO ../ahb_top/ahb_seqs.sv(77) @ 50: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    50                                       
+#   end_time                     time      64    50                                       
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002df                               
+#   Hwdata                       integral  32    'h6284fb3d                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    562                                      
+# ----------------------------------------------------------------------------------------
+# 
 # Width = 32, size 8 bits
 #                   70BYTE0_endian1
 #                   70BYTE2_endian1
+# UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 70: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
+# ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    50                                       
+#   end_time                     time      64    50                                       
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002df                               
+#   Hwdata                       integral  32    'h6284fb3d                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    562                                      
+# ----------------------------------------------------------------------------------------
 # UVM_INFO ../ahb_top/ahb_monitor.sv(58) @ 70: uvm_test_top.env.ahb_top.agnth.monh [ahb_monitor] this is the monitor
 # ---------------------------------------
 # Name         Type      Size  Value     
 # ---------------------------------------
 # xtn          ahb_xtn   -     @1174     
-#   Haddr      integral  32    'h8400005a
-#   Hwdata     integral  32    'h8e096153
+#   Haddr      integral  32    'h840002de
+#   Hwdata     integral  32    'h63355db5
 #   Hrdata     integral  32    'h0       
 #   Hsize      integral  3     'h0       
 #   Htrans     integral  3     'h2       
@@ -159,36 +224,104 @@
 #   Hburst     integral  3     'd0       
 #   Length     integral  10    'd0       
 # ---------------------------------------
+# UVM_INFO ../ahb_top/ahb_seqs.sv(77) @ 70: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    70                                       
+#   end_time                     time      64    70                                       
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e0                               
+#   Hwdata                       integral  32    'hb9e73f5c                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    'd242                                    
+# ----------------------------------------------------------------------------------------
+# 
 # Width = 32, size 8 bits
 #                  110BYTE2_endian1
+#                  110BYTE3_endian1
 # UVM_INFO ../ahb_top/ahb_monitor.sv(58) @ 110: uvm_test_top.env.ahb_top.agnth.monh [ahb_monitor] this is the monitor
 # ---------------------------------------
 # Name         Type      Size  Value     
 # ---------------------------------------
-# xtn          ahb_xtn   -     @1180     
-#   Haddr      integral  32    'h8400005a
-#   Hwdata     integral  32    'h8e096153
+# xtn          ahb_xtn   -     @1179     
+#   Haddr      integral  32    'h840002df
+#   Hwdata     integral  32    'h6284fb3d
 #   Hrdata     integral  32    'h0       
 #   Hsize      integral  3     'h0       
-#   Htrans     integral  3     'h2       
+#   Htrans     integral  3     'h3       
 #   Hreadyout  integral  1     'h0       
 #   Hreadyin   integral  1     'h1       
 #   Hwrite     integral  1     'h1       
 #   Hburst     integral  3     'd0       
 #   Length     integral  10    'd0       
 # ---------------------------------------
+# UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 110: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
+# ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    70                                       
+#   end_time                     time      64    70                                       
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e0                               
+#   Hwdata                       integral  32    'hb9e73f5c                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    'd242                                    
+# ----------------------------------------------------------------------------------------
+# UVM_INFO ../ahb_top/ahb_seqs.sv(77) @ 110: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    110                                      
+#   end_time                     time      64    110                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e1                               
+#   Hwdata                       integral  32    'hd5d2cf31                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    'd426                                    
+# ----------------------------------------------------------------------------------------
+# 
 # Width = 32, size 8 bits
-#                  150BYTE2_endian1
+#                  150BYTE3_endian1
+#                  150BYTE0_endian1
 # UVM_INFO ../ahb_top/ahb_monitor.sv(58) @ 150: uvm_test_top.env.ahb_top.agnth.monh [ahb_monitor] this is the monitor
 # ---------------------------------------
 # Name         Type      Size  Value     
 # ---------------------------------------
-# xtn          ahb_xtn   -     @1184     
-#   Haddr      integral  32    'h8400005a
-#   Hwdata     integral  32    'h8e096153
+# xtn          ahb_xtn   -     @1183     
+#   Haddr      integral  32    'h840002e0
+#   Hwdata     integral  32    'hb9e73f5c
 #   Hrdata     integral  32    'h0       
 #   Hsize      integral  3     'h0       
-#   Htrans     integral  3     'h2       
+#   Htrans     integral  3     'h3       
 #   Hreadyout  integral  1     'h0       
 #   Hreadyin   integral  1     'h1       
 #   Hwrite     integral  1     'h1       
@@ -200,27 +333,71 @@
 # Name       Type      Size  Value      
 # --------------------------------------
 # xtn        apb_xtn   -     @1083      
-#   Paddr    integral  32    'h8400005a 
+#   Paddr    integral  32    'h840002df 
 #   Penable  integral  1     'dX        
 #   Pwrite   integral  1     1          
 #   Pselx    integral  4     'd2        
 #   Prdata   integral  32    'h0xxxxxxxx
-#   Pwdata   integral  32    'h9        
+#   Pwdata   integral  32    'h62       
 # --------------------------------------
-# UVM_INFO ../tb/scoreboard.sv(95) @ 150: uvm_test_top.env.sb [scoreboard] addr_matched
-# UVM_INFO ../tb/scoreboard.sv(97) @ 150: uvm_test_top.env.sb [scoreboard] data_matched
+# UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 150: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
+# ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    110                                      
+#   end_time                     time      64    110                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e1                               
+#   Hwdata                       integral  32    'hd5d2cf31                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    'd426                                    
+# ----------------------------------------------------------------------------------------
+# UVM_INFO ../tb/scoreboard.sv(102) @ 150: uvm_test_top.env.sb [scoreboard] addr_matched
+# UVM_INFO ../ahb_top/ahb_seqs.sv(77) @ 150: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    150                                      
+#   end_time                     time      64    150                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e2                               
+#   Hwdata                       integral  32    'he9ad5bdd                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    573                                      
+# ----------------------------------------------------------------------------------------
+# 
 # Width = 32, size 8 bits
-#                  190BYTE2_endian1
+#                  190BYTE0_endian1
+#                  190BYTE1_endian1
 # UVM_INFO ../ahb_top/ahb_monitor.sv(58) @ 190: uvm_test_top.env.ahb_top.agnth.monh [ahb_monitor] this is the monitor
 # ---------------------------------------
 # Name         Type      Size  Value     
 # ---------------------------------------
-# xtn          ahb_xtn   -     @1188     
-#   Haddr      integral  32    'h8400005a
-#   Hwdata     integral  32    'h8e096153
+# xtn          ahb_xtn   -     @1187     
+#   Haddr      integral  32    'h840002e1
+#   Hwdata     integral  32    'hd5d2cf31
 #   Hrdata     integral  32    'h0       
 #   Hsize      integral  3     'h0       
-#   Htrans     integral  3     'h2       
+#   Htrans     integral  3     'h3       
 #   Hreadyout  integral  1     'h0       
 #   Hreadyin   integral  1     'h1       
 #   Hwrite     integral  1     'h1       
@@ -231,37 +408,295 @@
 # --------------------------------------
 # Name       Type      Size  Value      
 # --------------------------------------
-# xtn        apb_xtn   -     @1192      
-#   Paddr    integral  32    'h8400005a 
+# xtn        apb_xtn   -     @1191      
+#   Paddr    integral  32    'h840002e0 
 #   Penable  integral  1     'dX        
 #   Pwrite   integral  1     1          
 #   Pselx    integral  4     'd2        
 #   Prdata   integral  32    'h0xxxxxxxx
-#   Pwdata   integral  32    'h9        
+#   Pwdata   integral  32    'h5c       
 # --------------------------------------
-# UVM_INFO ../tb/scoreboard.sv(95) @ 190: uvm_test_top.env.sb [scoreboard] addr_matched
-# UVM_INFO ../tb/scoreboard.sv(97) @ 190: uvm_test_top.env.sb [scoreboard] data_matched
-# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 200: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 190: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
+# ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    150                                      
+#   end_time                     time      64    150                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e2                               
+#   Hwdata                       integral  32    'he9ad5bdd                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    573                                      
+# ----------------------------------------------------------------------------------------
+# UVM_INFO ../tb/scoreboard.sv(102) @ 190: uvm_test_top.env.sb [scoreboard] addr_matched
+# UVM_INFO ../ahb_top/ahb_seqs.sv(77) @ 190: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    190                                      
+#   end_time                     time      64    190                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e3                               
+#   Hwdata                       integral  32    'h1637bc0e                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    964                                      
+# ----------------------------------------------------------------------------------------
+# 
+# Width = 32, size 8 bits
+#                  230BYTE1_endian1
+#                  230BYTE2_endian1
+# UVM_INFO ../ahb_top/ahb_monitor.sv(58) @ 230: uvm_test_top.env.ahb_top.agnth.monh [ahb_monitor] this is the monitor
+# ---------------------------------------
+# Name         Type      Size  Value     
+# ---------------------------------------
+# xtn          ahb_xtn   -     @1195     
+#   Haddr      integral  32    'h840002e2
+#   Hwdata     integral  32    'he9ad5bdd
+#   Hrdata     integral  32    'h0       
+#   Hsize      integral  3     'h0       
+#   Htrans     integral  3     'h3       
+#   Hreadyout  integral  1     'h0       
+#   Hreadyin   integral  1     'h1       
+#   Hwrite     integral  1     'h1       
+#   Hburst     integral  3     'd0       
+#   Length     integral  10    'd0       
+# ---------------------------------------
+# UVM_INFO ../apb_top/apb_monitor.sv(55) @ 230: uvm_test_top.env.apb_top.agnth.monh [apb_monitor] this is the monitor
+# --------------------------------------
+# Name       Type      Size  Value      
+# --------------------------------------
+# xtn        apb_xtn   -     @1199      
+#   Paddr    integral  32    'h840002e1 
+#   Penable  integral  1     'dX        
+#   Pwrite   integral  1     1          
+#   Pselx    integral  4     'd2        
+#   Prdata   integral  32    'h0xxxxxxxx
+#   Pwdata   integral  32    'hcf       
+# --------------------------------------
+# UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 230: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
+# ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    190                                      
+#   end_time                     time      64    190                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e3                               
+#   Hwdata                       integral  32    'h1637bc0e                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    964                                      
+# ----------------------------------------------------------------------------------------
+# UVM_INFO ../tb/scoreboard.sv(102) @ 230: uvm_test_top.env.sb [scoreboard] addr_matched
+# UVM_INFO ../ahb_top/ahb_seqs.sv(77) @ 230: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    230                                      
+#   end_time                     time      64    230                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e4                               
+#   Hwdata                       integral  32    'hcbdb9a21                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    781                                      
+# ----------------------------------------------------------------------------------------
+# 
+# Width = 32, size 8 bits
+#                  270BYTE2_endian1
+#                  270BYTE3_endian1
+# UVM_INFO ../ahb_top/ahb_monitor.sv(58) @ 270: uvm_test_top.env.ahb_top.agnth.monh [ahb_monitor] this is the monitor
+# ---------------------------------------
+# Name         Type      Size  Value     
+# ---------------------------------------
+# xtn          ahb_xtn   -     @1203     
+#   Haddr      integral  32    'h840002e3
+#   Hwdata     integral  32    'h1637bc0e
+#   Hrdata     integral  32    'h0       
+#   Hsize      integral  3     'h0       
+#   Htrans     integral  3     'h3       
+#   Hreadyout  integral  1     'h0       
+#   Hreadyin   integral  1     'h1       
+#   Hwrite     integral  1     'h1       
+#   Hburst     integral  3     'd0       
+#   Length     integral  10    'd0       
+# ---------------------------------------
+# UVM_INFO ../apb_top/apb_monitor.sv(55) @ 270: uvm_test_top.env.apb_top.agnth.monh [apb_monitor] this is the monitor
+# --------------------------------------
+# Name       Type      Size  Value      
+# --------------------------------------
+# xtn        apb_xtn   -     @1207      
+#   Paddr    integral  32    'h840002e2 
+#   Penable  integral  1     'dX        
+#   Pwrite   integral  1     1          
+#   Pselx    integral  4     'd2        
+#   Prdata   integral  32    'h0xxxxxxxx
+#   Pwdata   integral  32    'had       
+# --------------------------------------
+# UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 270: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
+# ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    230                                      
+#   end_time                     time      64    230                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e4                               
+#   Hwdata                       integral  32    'hcbdb9a21                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h3                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    781                                      
+# ----------------------------------------------------------------------------------------
+# UVM_INFO ../tb/scoreboard.sv(102) @ 270: uvm_test_top.env.sb [scoreboard] addr_matched
+# UVM_INFO ../ahb_top/ahb_seqs.sv(92) @ 270: uvm_test_top.env.ahb_top.agnth.seqrh@@seq2 [INCREMENT] Printing from seqs /n ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    270                                      
+#   end_time                     time      64    270                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e4                               
+#   Hwdata                       integral  32    'hc4cee637                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h0                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    'd292                                    
+# ----------------------------------------------------------------------------------------
+# 
+#                  310BYTE3_endian1
+#                  310BYTE0_endian1
+# UVM_INFO ../apb_top/apb_monitor.sv(55) @ 310: uvm_test_top.env.apb_top.agnth.monh [apb_monitor] this is the monitor
+# --------------------------------------
+# Name       Type      Size  Value      
+# --------------------------------------
+# xtn        apb_xtn   -     @1215      
+#   Paddr    integral  32    'h840002e3 
+#   Penable  integral  1     'dX        
+#   Pwrite   integral  1     1          
+#   Pselx    integral  4     'd2        
+#   Prdata   integral  32    'h0xxxxxxxx
+#   Pwdata   integral  32    'h16       
+# --------------------------------------
+# UVM_INFO ../ahb_top/ahb_driver.sv(49) @ 310: uvm_test_top.env.ahb_top.agnth.drvh [ahb_driver] this is the driver
+# ----------------------------------------------------------------------------------------
+# Name                           Type      Size  Value                                    
+# ----------------------------------------------------------------------------------------
+# req                            ahb_xtn   -     @1098                                    
+#   begin_time                   time      64    270                                      
+#   end_time                     time      64    270                                      
+#   depth                        int       32    'd2                                      
+#   parent sequence (name)       string    4     seq2                                     
+#   parent sequence (full name)  string    41    uvm_test_top.env.ahb_top.agnth.seqrh.seq2
+#   sequencer                    string    36    uvm_test_top.env.ahb_top.agnth.seqrh     
+#   Haddr                        integral  32    'h840002e4                               
+#   Hwdata                       integral  32    'hc4cee637                               
+#   Hrdata                       integral  32    'h0                                      
+#   Hsize                        integral  3     'h0                                      
+#   Htrans                       integral  3     'h0                                      
+#   Hreadyout                    integral  1     'h0                                      
+#   Hreadyin                     integral  1     'h1                                      
+#   Hwrite                       integral  1     'h1                                      
+#   Hburst                       integral  3     'd1                                      
+#   Length                       integral  10    'd292                                    
+# ----------------------------------------------------------------------------------------
+# UVM_INFO ../tb/scoreboard.sv(102) @ 310: uvm_test_top.env.sb [scoreboard] addr_matched
+# UVM_INFO ../apb_top/apb_monitor.sv(55) @ 350: uvm_test_top.env.apb_top.agnth.monh [apb_monitor] this is the monitor
+# --------------------------------------
+# Name       Type      Size  Value      
+# --------------------------------------
+# xtn        apb_xtn   -     @1219      
+#   Paddr    integral  32    'h840002e4 
+#   Penable  integral  1     'dX        
+#   Pwrite   integral  1     1          
+#   Pselx    integral  4     'd2        
+#   Prdata   integral  32    'h0xxxxxxxx
+#   Pwdata   integral  32    'h21       
+# --------------------------------------
+# UVM_INFO ../tb/scoreboard.sv(102) @ 350: uvm_test_top.env.sb [scoreboard] addr_matched
+# UVM_INFO ../apb_top/apb_monitor.sv(55) @ 390: uvm_test_top.env.apb_top.agnth.monh [apb_monitor] this is the monitor
+# --------------------------------------
+# Name       Type      Size  Value      
+# --------------------------------------
+# xtn        apb_xtn   -     @1224      
+#   Paddr    integral  32    'h840002e4 
+#   Penable  integral  1     'dX        
+#   Pwrite   integral  1     'd0        
+#   Pselx    integral  4     'd0        
+#   Prdata   integral  32    'h0        
+#   Pwdata   integral  32    'h0xxxxxxxx
+# --------------------------------------
+# UVM_INFO verilog_src/uvm-1.1d/src/base/uvm_objection.svh(1267) @ 510: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # 
 # --- UVM Report Summary ---
 # 
 # ** Report counts by severity
-# UVM_INFO :   17
+# UVM_INFO :   41
 # UVM_WARNING :    0
 # UVM_ERROR :    0
 # UVM_FATAL :    0
 # ** Report counts by id
+# [INCREMENT]     8
 # [Questa UVM]     2
 # [RNTST]     1
 # [TEST_DONE]     1
 # [UVMTOP]     1
-# [ahb_driver]     1
-# [ahb_monitor]     4
-# [apb_monitor]     2
+# [ahb_driver]     8
+# [ahb_monitor]     6
+# [apb_monitor]     7
 # [env]     1
-# [scoreboard]     4
+# [scoreboard]     6
 # ** Note: $finish    : /home/cad/eda/Mentor_Graphics/Questasim/questasim/linux_x86_64/../verilog_src/uvm-1.1d/src/base/uvm_root.svh(430)
-#    Time: 200 ns  Iteration: 54  Instance: /top
+#    Time: 510 ns  Iteration: 54  Instance: /top
 # Saving coverage database on exit...
-# End time: 18:29:08 on Oct 11,2025, Elapsed time: 0:00:03
+# End time: 20:45:28 on Oct 12,2025, Elapsed time: 0:00:04
 # Errors: 0, Warnings: 2

@@ -57,7 +57,7 @@ task ahb_incr_seqs::body();
 
         //NON-SEQUENTIAL
         start_item(req);
-        assert(req.randomize with {req.Htrans == 2'b10; req.Hwrite == 0; ((req.Hburst == 3'd7) || (req.Hburst == 3'd5) || (req.Hburst == 3'd3) || (req.Hburst == 3'd1));});
+        assert(req.randomize with {req.Htrans == 2'b10; req.Hwrite == 1; ((req.Hburst == 3'd7) || (req.Hburst == 3'd5) || (req.Hburst == 3'd3) || (req.Hburst == 3'd1));});
         `uvm_info("INCREMENT", $sformatf("Printing from seqs /n %s", req.sprint()), UVM_LOW)
         finish_item(req);
 
@@ -124,7 +124,7 @@ task ahb_wrap_seqs::body();
 
         //NON-SEQUENTIAL
         start_item(req);
-        assert(req.randomize with {req.Htrans == 2'b10; req.Hwrite == 0; ((req.Hburst == 3'd6) || (req.Hburst == 3'd4) || (req.Hburst == 3'd2));});
+        assert(req.randomize with {req.Htrans == 2'b10; req.Hwrite == 1; ((req.Hburst == 3'd6) || (req.Hburst == 3'd4) || (req.Hburst == 3'd2));});
         `uvm_info("INCREMENT", $sformatf("Printing from seqs /n %s", req.sprint()), UVM_LOW)
         finish_item(req);
 
